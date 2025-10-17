@@ -1,16 +1,12 @@
 #include <stdio.h>
 
-// ============================
-// Definición de estructura
-// ============================
+
 typedef struct {
     int codigo;
     float nota;
 } Estudiante;
 
-// ============================
-// Datos predefinidos
-// ============================
+
 Estudiante estudiantes[] = {
     {2024101, 4.5},
     {2024102, 3.2},
@@ -20,11 +16,7 @@ Estudiante estudiantes[] = {
 };
 int n = sizeof(estudiantes) / sizeof(estudiantes[0]);
 
-// ============================
-// Funciones Recursivas
-// ============================
 
-// Buscar nota máxima recursivamente
 float notaMaxima(Estudiante arr[], int i, int n) {
     if (i == n - 1) 
         return arr[i].nota;  // caso base
@@ -32,26 +24,26 @@ float notaMaxima(Estudiante arr[], int i, int n) {
     return (arr[i].nota > maxRestante) ? arr[i].nota : maxRestante;
 }
 
-// Calcular promedio recursivamente
+
 float promedioNotas(Estudiante arr[], int i, int n) {
     if (i == n - 1)
         return arr[i].nota;  // caso base
     return arr[i].nota + promedioNotas(arr, i + 1, n);
 }
 
-// Encontrar índice del mínimo (para Selection Sort recursivo)
+
 int indiceMin(Estudiante arr[], int inicio, int n) {
     if (inicio == n - 1) return inicio;
     int idxMinResto = indiceMin(arr, inicio + 1, n);
     return (arr[inicio].codigo < arr[idxMinResto].codigo) ? inicio : idxMinResto;
 }
 
-// Selection Sort recursivo por código
+
 void selectionSortRec(Estudiante arr[], int inicio, int n) {
     if (inicio >= n - 1) return;  // caso base
     int idxMin = indiceMin(arr, inicio, n);
     
-    // Intercambio
+
     if (idxMin != inicio) {
         Estudiante temp = arr[inicio];
         arr[inicio] = arr[idxMin];
@@ -60,7 +52,7 @@ void selectionSortRec(Estudiante arr[], int inicio, int n) {
     selectionSortRec(arr, inicio + 1, n);
 }
 
-// Mostrar lista de estudiantes
+
 void mostrarLista(Estudiante arr[], int n) {
     printf("\nLista de Estudiantes:\n");
     for (int i = 0; i < n; i++) {
@@ -69,9 +61,6 @@ void mostrarLista(Estudiante arr[], int n) {
     printf("\n");
 }
 
-// ============================
-// Menú principal
-// ============================
 int main() {
     int opcion;
     do {
